@@ -1,0 +1,1373 @@
+/* --- RESET & VARIABLES --- */
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f4f1ea;
+    --accent-color: #ff471a;
+    /* Merah oranye komik klasik */
+    --border-width: 2px;
+    --shadow-offset: 4px;
+    --border-radius: 4px;
+    --border-color: #444444;
+    --card-bg: #2d2d2d;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.reader-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Space Mono', monospace;
+    /* Font teknis/blocky */
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.logo {
+    font-family: 'Roboto Slab', serif;
+    /* Font judul Western */
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- UTILITIES --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: var(--border-width) solid var(--border-color);
+    transition: all 0.2s ease;
+    background: transparent;
+    border-radius: var(--border-radius);
+}
+
+/* Efek tombol blocky */
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--border-color);
+}
+
+.btn-primary:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--border-color);
+}
+
+.btn-outline:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: var(--border-width) solid var(--border-color);
+    background-color: var(--card-bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.8rem;
+    letter-spacing: -1px;
+}
+
+.logo .highlight {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-weight: 700;
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: var(--accent-color);
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 3rem 4rem;
+    border-bottom: var(--border-width) solid var(--border-color);
+    background-color: var(--card-bg);
+    min-height: auto;
+}
+
+.hero-content {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.badge {
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    width: fit-content;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.hero p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.hero-buttons .btn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+}
+
+.hero-image {
+    flex-shrink: 0;
+    width: 220px;
+    height: auto;
+    /* Follow poster height */
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--border-color);
+    overflow: hidden;
+    background-color: var(--accent-color);
+    border-radius: var(--border-radius);
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Remove bottom crop gap */
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover img {
+    transform: scale(1.05);
+}
+
+/* --- GRID SECTION --- */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    white-space: nowrap;
+}
+
+.divider {
+    height: 4px;
+    background: repeating-linear-gradient(45deg,
+            #000,
+            #000 10px,
+            var(--accent-color) 10px,
+            var(--accent-color) 20px);
+    /* Pola garis peringatan/polisi */
+    width: 100%;
+    border: 2px solid black;
+}
+
+.comic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- COMIC CARD DESIGN (Horizontal) --- */
+.comic-card {
+    border: var(--border-width) solid var(--border-color);
+    background: var(--card-bg);
+    transition: transform 0.2s ease;
+    position: relative;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: flex;
+    /* Horizontal Layout */
+    flex-direction: row;
+    height: 220px;
+    /* Fixed height for consistency */
+}
+
+.comic-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px var(--accent-color);
+}
+
+.card-image {
+    width: 150px;
+    height: 100%;
+    flex-shrink: 0;
+    border-right: var(--border-width) solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.issue-tag {
+    /* Kept for publisher name, maybe resize */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    font-size: 0.7rem;
+    background: var(--accent-color);
+    color: white;
+    padding: 3px 8px;
+    font-weight: bold;
+    border-bottom: var(--border-width) solid var(--border-color);
+    border-right: var(--border-width) solid var(--border-color);
+    border-left: none;
+    z-index: 2;
+}
+
+.card-content {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-content h3 a {
+    transition: color 0.2s ease;
+}
+
+.card-content h3 a:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.latest-chapters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.chapter-pill {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    font-family: 'Space Mono', monospace;
+    transition: background 0.2s;
+    text-decoration: none !important;
+    color: var(--text-color);
+}
+
+.chapter-pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-color);
+}
+
+.badge-new {
+    background: #ff3333;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+
+.chapter-date {
+    color: #888;
+    font-size: 0.75rem;
+}
+
+.card-content .author {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.read-link {
+    background: black;
+    color: white;
+    padding: 2px 8px;
+}
+
+.read-link:hover {
+    background: var(--accent-color);
+}
+
+/* --- FOOTER --- */
+footer {
+    margin-top: 4rem;
+    border-top: var(--border-width) solid var(--border-color);
+    padding: 2rem;
+    background: black;
+    color: white;
+    text-align: center;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column-reverse;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .hero-content {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .hero-content .badge {
+        margin: 0 auto 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-image {
+        width: 200px;
+        height: 300px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* =========================================
+   CHAPTER READER STYLES
+   ========================================= */
+
+/* --- Reader Navbar Override --- */
+.reader-nav {
+    border-bottom: none;
+    /* Kita pindahkan border ke sticky controls */
+    padding: 1rem 2rem;
+}
+
+.reader-title {
+    display: flex;
+    gap: 0.5rem;
+    font-weight: 700;
+}
+
+.reader-title .series-name {
+    text-transform: uppercase;
+}
+
+.reader-title .chapter-num {
+    color: var(--accent-color);
+}
+
+.btn-close {
+    font-weight: 900;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+}
+
+.btn-close:hover {
+    color: var(--accent-color);
+}
+
+/* --- Sticky Controls Toolbar --- */
+.sticky-controls {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background: var(--bg-color);
+    /* Matches body bg */
+    border-top: var(--border-width) solid var(--border-color);
+    border-bottom: var(--border-width) solid var(--border-color);
+    padding: 10px 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.control-group {
+    flex: 1;
+    display: flex;
+}
+
+.control-group.center {
+    justify-content: center;
+    flex: 2;
+    /* Bagian tengah lebih lebar */
+}
+
+.control-group.right {
+    justify-content: flex-end;
+}
+
+/* Custom Select Style (Brutalist) */
+.chapter-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: white;
+    border: var(--border-width) solid var(--border-color);
+    padding: 8px 30px 8px 15px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 0;
+    /* Pastikan kotak */
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+    /* Custom Arrow Hack */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.chapter-select:focus {
+    outline: none;
+    box-shadow: 4px 4px 0px var(--accent-color);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+/* --- Comic Viewer Area --- */
+.reader-container {
+    max-width: 900px;
+    /* Lebar optimal untuk membaca */
+    margin: 0 auto;
+    border-left: var(--border-width) solid var(--border-color);
+    border-right: var(--border-width) solid var(--border-color);
+    background-color: #e0ded5;
+    /* Sedikit lebih gelap di area baca */
+    min-height: 100vh;
+}
+
+.comic-pages {
+    display: flex;
+    flex-direction: column;
+}
+
+.comic-pages img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Menghilangkan gap di bawah gambar */
+    /* Opsional: Border antar halaman */
+    border-bottom: 2px solid #000;
+}
+
+/* --- Bottom Nav --- */
+.bottom-nav {
+    padding: 3rem 2rem;
+    background-color: white;
+    text-align: center;
+}
+
+.nav-buttons-large {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.big-btn {
+    flex: 1;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+}
+
+/* --- Comments Section --- */
+.comments-section {
+    padding: 2rem;
+    background-color: var(--bg-color);
+    border-top: var(--border-width) solid var(--border-color);
+}
+
+.comments-section h3 {
+    margin-bottom: 1.5rem;
+    border-left: 10px solid var(--accent-color);
+    padding-left: 10px;
+}
+
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.comment-box textarea {
+    width: 100%;
+    height: 100px;
+    border: var(--border-width) solid var(--border-color);
+    background: white;
+    padding: 1rem;
+    font-family: 'Space Mono', monospace;
+    resize: vertical;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.comment-box textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.comment-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    background: white;
+    border: 2px solid black;
+    padding: 1rem;
+    box-shadow: 4px 4px 0px #ccc;
+}
+
+.comment-item .avatar {
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    flex-shrink: 0;
+}
+
+.comment-item .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #666;
+    border-bottom: 1px dashed black;
+    padding-bottom: 4px;
+}
+
+.comment-header .username {
+    font-weight: 900;
+    color: black;
+    text-transform: uppercase;
+}
+
+/* --- Responsive for Reader --- */
+@media (max-width: 768px) {
+    .reader-title {
+        display: none;
+        /* Sembunyikan judul di HP agar tidak sempit */
+    }
+
+    .sticky-controls {
+        padding: 10px;
+        gap: 5px;
+    }
+
+    .chapter-select {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        background-position: right 5px center;
+    }
+
+    .btn-sm {
+        padding: 8px 8px;
+        /* Tombol navigasi lebih kecil */
+    }
+
+    .reader-container {
+        border-left: none;
+        border-right: none;
+    }
+
+    .nav-buttons-large {
+        flex-direction: column;
+    }
+}
+
+/* =========================================
+   COMIC INFO SECTION
+   ========================================= */
+
+.comic-info-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-bottom: var(--border-width) solid var(--border-color);
+    padding: 3rem 2rem;
+}
+
+.comic-info-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.comic-cover {
+    flex-shrink: 0;
+    width: 280px;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: 8px 8px 0px var(--accent-color);
+    overflow: hidden;
+    background: #000;
+}
+
+.comic-cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.comic-details {
+    flex: 1;
+    color: white;
+}
+
+.publisher-badge {
+    display: inline-block;
+    background: var(--accent-color);
+    color: white;
+    padding: 5px 12px;
+    font-weight: 900;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.comic-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.comic-creator {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 1.5rem;
+}
+
+.comic-creator strong {
+    color: var(--accent-color);
+}
+
+.comic-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.meta-label {
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.meta-value {
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+}
+
+.comic-synopsis {
+    margin-bottom: 1.5rem;
+}
+
+.comic-synopsis h3 {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    margin-bottom: 0.75rem;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 10px;
+}
+
+.comic-synopsis p {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.comic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.tag:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.comic-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.comic-actions .btn {
+    flex: 1;
+    text-align: center;
+}
+
+/* --- Responsive for Comic Info --- */
+@media (max-width: 768px) {
+    .comic-info-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .comic-cover {
+        width: 200px;
+    }
+
+    .comic-title {
+        font-size: 1.8rem;
+    }
+
+    .comic-meta {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .comic-synopsis h3 {
+        border-left: none;
+        padding-left: 0;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 5px;
+    }
+
+    .comic-tags {
+        justify-content: center;
+    }
+
+    .comic-actions {
+        flex-direction: column;
+    }
+}
+
+/* =========================================
+   COMPACT DETAIL PAGE STYLES
+   ========================================= */
+
+.detail-compact {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: var(--border-width) solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.detail-cover {
+    flex-shrink: 0;
+    width: 180px;
+    position: relative;
+}
+
+.detail-cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: 4px 4px 0px var(--border-color);
+}
+
+.status-tag {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    background: var(--accent-color);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 900;
+    padding: 4px 8px;
+    text-transform: uppercase;
+}
+
+.detail-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.publisher-tag {
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.detail-info h1 {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+.detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #ccc;
+}
+
+.detail-meta strong {
+    color: #000;
+}
+
+.detail-synopsis {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.detail-actions .btn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+}
+
+/* Chapter Section */
+.chapter-section {
+    margin-bottom: 3rem;
+}
+
+.chapter-grid {
+    display: flex;
+    flex-direction: column;
+    border: var(--border-width) solid var(--border-color);
+    background: white;
+}
+
+.chapter-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ddd;
+    transition: all 0.2s;
+}
+
+.chapter-item:last-child {
+    border-bottom: none;
+}
+
+.chapter-item:hover {
+    background: var(--accent-color);
+    color: white;
+    padding-left: 1.5rem;
+}
+
+.chapter-item:hover .ch-number {
+    background: white;
+    color: var(--accent-color);
+}
+
+.chapter-item:hover .ch-date {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.ch-number {
+    background: var(--accent-color);
+    color: white;
+    font-weight: 900;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    margin-right: 1rem;
+    min-width: 40px;
+    text-align: center;
+}
+
+.ch-title {
+    flex: 1;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.ch-date {
+    font-size: 0.8rem;
+    color: #888;
+    font-family: 'Space Mono', monospace;
+}
+
+/* Responsive Compact Detail */
+@media (max-width: 600px) {
+    .detail-compact {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .detail-cover {
+        width: 150px;
+    }
+
+    .detail-info h1 {
+        font-size: 1.5rem;
+    }
+
+    .detail-meta {
+        justify-content: center;
+    }
+
+    .detail-synopsis {
+        text-align: left;
+    }
+
+    .detail-actions {
+        justify-content: center;
+    }
+}
+
+/* =========================================
+   NEW DETAIL LAYOUT (Sidebar + Main)
+   ========================================= */
+
+.new-layout-wrapper {
+    margin-top: 2rem;
+}
+
+.layout-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    /* Fixed Sidebar + Fluid Main */
+    gap: 3rem;
+    align-items: start;
+}
+
+/* --- LEFT SIDEBAR PANEL --- */
+.sidebar-panel {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sidebar-cover {
+    width: 100%;
+    border: var(--border-width) solid #555;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0px #000;
+    background: #000;
+    /* Dark mode override integrated */
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.sidebar-cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn-block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    align-items: center;
+    padding: 12px 15px;
+}
+
+.icon-btn .icon {
+    font-size: 1.2rem;
+}
+
+.sidebar-info-block {
+    border-top: 2px solid #555;
+    /* Dark mode border */
+    padding-top: 1.5rem;
+}
+
+.sidebar-info-block h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 4px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.info-row {
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-row .label {
+    font-size: 0.75rem;
+    color: #aaa;
+    /* Dark mode label color */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.info-row .val {
+    font-weight: 700;
+}
+
+
+/* --- MAIN CONTENT PANEL --- */
+.main-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.manga-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px dashed #444;
+    /* Dark mode border */
+    padding-bottom: 1.5rem;
+}
+
+.manga-title {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: white;
+}
+
+.manga-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.manga-stats {
+    display: flex;
+    gap: 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    color: #aaa;
+    /* Dark mode color */
+    font-weight: 700;
+}
+
+.manga-synopsis {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+}
+
+.manga-synopsis p {
+    margin-bottom: 1rem;
+}
+
+/* --- Chapter List Section --- */
+.chapter-list-section {
+    background: transparent;
+}
+
+.chapter-header-row {
+    margin-bottom: 1.5rem;
+    border-bottom: var(--border-width) solid #444;
+    /* Dark mode border */
+    padding-bottom: 0.5rem;
+}
+
+.chapter-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.tab-group {
+    display: flex;
+    gap: 0.5rem;
+    background: #333;
+    /* Dark mode bg */
+    padding: 4px;
+    border-radius: var(--border-radius);
+    border: 1px solid #555;
+}
+
+.tab-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: #ccc;
+    /* Dark mode text */
+}
+
+.tab-btn.active {
+    background: #555;
+    /* Dark mode active */
+    color: white;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.sort-group {
+    display: flex;
+    gap: 5px;
+}
+
+.chapter-search-bar {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.chapter-search-bar input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    border: 2px solid #555;
+    background: #2d2d2d;
+    /* Dark mode bg */
+    font-family: 'Space Mono';
+    color: white;
+}
+
+.chapter-search-bar .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+}
+
+.new-chapter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ch-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2d2d2d;
+    /* Dark mode bg */
+    border: 1px solid #444;
+    padding: 12px 15px;
+    transition: all 0.2s;
+    color: #ddd;
+}
+
+.ch-item:hover {
+    border-color: var(--accent-color);
+    background: #333;
+    transform: translateX(5px);
+    box-shadow: 2px 2px 0px var(--accent-color);
+}
+
+.ch-name {
+    font-weight: 700;
+}
+
+.ch-time {
+    font-size: 0.85rem;
+    color: #888;
+    font-family: 'Space Mono';
+}
+
+/* --- Responsive New Layout --- */
+@media (max-width: 800px) {
+    .layout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-panel {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .sidebar-cover {
+        width: 140px;
+        flex-shrink: 0;
+    }
+
+    .sidebar-actions {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .sidebar-info-block {
+        width: 100%;
+        border-top: none;
+        border-left: 2px solid var(--border-color);
+        padding-left: 1rem;
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .sidebar-panel {
+        flex-direction: column;
+    }
+
+    .sidebar-cover {
+        width: 180px;
+        margin: 0 auto;
+    }
+
+    .sidebar-info-block {
+        border-left: none;
+        padding-left: 0;
+        border-top: 2px solid var(--border-color);
+        padding-top: 1rem;
+    }
+}
